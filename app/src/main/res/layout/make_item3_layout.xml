@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content" android:orientation="horizontal"
+    android:layout_margin="10dp"
+    >
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/make_simp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:id="@+id/make_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="知情局(北范餐饮三楼)"
+                android:textSize="20dp"
+                />
+            <CheckBox
+                android:button="@null"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/selelax"
+                android:layout_marginLeft="70dp"
+                android:checked="false"
+                />
+        </LinearLayout>
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="月售547"
+           />
+        <RatingBar
+            android:id="@+id/bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:max="5"
+            android:progress="2"
+            />
+    </LinearLayout>
+</LinearLayout>

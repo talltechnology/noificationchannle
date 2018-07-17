@@ -1,0 +1,101 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.jakewharton.butterknife'
+// 添加插件
+apply plugin: 'com.mob.sdk'
+
+// 在MobSDK的扩展中注册SMSSDK的相关信息
+MobSDK {
+    appKey "26b48dfb58b1a"
+    appSecret "82b85d461b85a5ab8f69f9675f696655"
+
+    SMSSDK {}
+}
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.example.wxy.noificationchannle"
+        minSdkVersion 15
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+            // 设置支持的SO库架构
+            abiFilters 'x86' //, 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+        }
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation 'com.jakewharton:butterknife:8.4.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+    //debagle
+    implementation 'com.tencent.bugly:crashreport:latest.release'
+    //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.1.9
+    //图签加载依赖
+    implementation 'com.facebook.fresco:fresco:1.9.0'
+    implementation 'com.github.bumptech.glide:glide:3.6.1'
+    // 支持 GIF 动图，需要添加
+    implementation 'com.facebook.fresco:animated-gif:0.12.0'
+    //Banner
+    implementation 'com.youth.banner:banner:1.4.10'
+    implementation 'com.hjm:BottomTabBar:1.1.1'
+    implementation 'org.greenrobot:eventbus:3.0.0'
+    //retorfit
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.14'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    //okhttp
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+    implementation 'pub.devrel:easypermissions:0.3.0'
+    // recyclerview
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
+    implementation 'com.jcodecraeer:xrecyclerview:1.5.9'
+    implementation 'com.android.support:design:27.1.1'
+    implementation files('libs/umeng-share-sina-full-6.9.0.jar')
+    implementation files('libs/weiboSDKCore.jar')
+    implementation files('libs/umeng-sharetool-6.9.0.jar')
+    implementation files('libs/wechat-sdk-android-without-mta-5.1.4.jar')
+    implementation files('libs/umeng-share-wechat-full-6.9.0.jar')
+    implementation files('libs/utdid4all-1.1.5.3_proguard.jar')
+    implementation files('libs/umeng-shareboard-widget-6.9.0.jar')
+    implementation files('libs/umeng-share-core-6.9.0.jar')
+    implementation files('libs/umeng-share-QQ-full-6.9.0.jar')
+    implementation files('libs/umeng-debug-1.0.0.jar')
+    implementation files('libs/umeng-common-1.5.0.jar')
+    implementation files('libs/SecurityEnvSDK-release-1.1.0.jar')
+    implementation files('libs/open_sdk_r5990_lite.jar')
+    implementation files('libs/Amap_2DMap_V5.2.0_20170627.jar')
+    implementation files('libs/AMap_Location_V4.0.0_20180423.jar')
+    implementation files('libs/AMap_Search_V6.1.0_20180330.jar')
+
+
+}
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == 'com.android.support') {
+            if (!requested.name.startsWith("multidex")) {
+                details.useVersion '27.1.1'
+            }
+        }
+    }
+}
